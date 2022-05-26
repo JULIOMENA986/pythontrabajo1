@@ -1,4 +1,4 @@
-from Materias.Materia import Materia
+from Materia import Materia
 import re
 import os 
 class InterfaceMateria():

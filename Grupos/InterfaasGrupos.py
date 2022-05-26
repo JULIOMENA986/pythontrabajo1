@@ -1,15 +1,15 @@
-from Grupos.Grupo import Grupo
+from Grupo import Grupos
 import re
 import os 
 
 class InterfaasGrupos():
     def __init__(self):
-        self.lista = Grupo()
+        self.lista = Grupos()
     
     def cls(self):
         os.system('cls' if os.name=='nt' else 'clear')
     def nuevoGrupo(self):
-        p = Grupo()
+        p = Grupos()
         p.especialidad = input("especialidad: ")
         p.grupo = input("Grupo asignado: ")
         p.seccion = input("Seccion asignada: ")

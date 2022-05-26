@@ -1,7 +1,7 @@
 from Alumnos.Alumnos import Alumnos
 from Materias.Materia import Materia
 import copy
-class Grupos(Alumnos):
+class Grupo(Alumnos):
     def __init__(self, idgrupos=0, especialidad="", grupo ="", seccion="", edificio="",lista=list()):
         self.idgrupos = idgrupos
         self.especialidad = especialidad

@@ -50,20 +50,19 @@ class Materia():
             raise StopIteration
    
     def __str__(self):
-        return self.nombre.ljust(20) + ' \t\t' + self.rfc.ljust(20) + ' \t\t' + self.direccion
+        return self.nombre.ljust(20) + ' \t\t' + self.calificacion.ljust(20) 
 
     def toObjects(self):
         lista = list()
         data = self.getDataJson()
         for x in data:
-            lista.append(Materia(_id=x['_id'], nombre=x['nombre'], rfc=x['rfc'], direccion=x["direccion"]))
+            lista.append(Materia(_id=x['_id'], nombre=x['nombre'], rfc=x['rfc'], calificacion=x["calificacion"]))
         self.lista = lista
 
     def getDictory(self):
         return {
             "nombre": self.nombre,
-            "rfc": self.rfc,
-            "direccion": self.direccion
+            "calificacion": self.calificacion
         }
 
     def listDict(self):

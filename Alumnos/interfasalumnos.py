@@ -37,7 +37,7 @@ def eliminaralumno(self):
 	print(self.lista.mostrar(id))
 	self.lista.eliminar(self.lista.mostrar(id))
 
-def menualumnos(self):
+def menuAlumnos(self):
 	a = 10
 	while a!=0:
 		self.cls()
