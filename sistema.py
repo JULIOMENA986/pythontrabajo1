@@ -1,7 +1,7 @@
-import os
 from Alumnos.interfasalumnos import interfasalumno
 from Grupos.InterfaasGrupos import InterfaasGrupos
 from Materias.InterfaceMateria import InterfaceMateria
+import os
 
 
 class sistema:
@@ -26,7 +26,7 @@ class sistema:
             if a.upper() == 'M':
                 p = self.InterfaceMateria.menuMaterias()
             elif a.upper() == 'A':
-                p = self.interfasalumno.menuAlumnos()
+                p = self.interfasalumno.menuAlumno()    
             elif a.upper() == 'G':
                 p = self.InterfaasGrupos.menuGrupo()
             elif a == '0':

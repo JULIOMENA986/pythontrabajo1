@@ -1,15 +1,17 @@
-from Grupo import Grupos
+from Grupos.Grupo import Grupo
+import Jsonconexion
 import re
 import os 
 
 class InterfaasGrupos():
     def __init__(self):
-        self.lista = Grupos()
+        self.lista = Grupo()
+        self.lista.toObjects()
     
     def cls(self):
-        os.system('cls' if os.name=='nt' else 'clear')
+        os.system('cls' if os.name=='nt' else 'clear') 
     def nuevoGrupo(self):
-        p = Grupos()
+        p = Grupo()
         p.especialidad = input("especialidad: ")
         p.grupo = input("Grupo asignado: ")
         p.seccion = input("Seccion asignada: ")
@@ -55,7 +57,7 @@ class InterfaasGrupos():
         id = input("Ingrese el id del Grupo a eliminar: ")
         id = int(id)
         print (self.lista.getGrupo(id))
-        self.lista.delete(self.lista.getGrupo(id))
+        self.lista.remove(self.lista.getGrupo(id))
     
     def menuGrupo(self):
         a = 10
@@ -72,6 +74,7 @@ class InterfaasGrupos():
             if a == 1:
                 p = self.nuevoGrupo()
                 self.lista.add(p)
+                self.lista.toJson(self.lista)
             elif a == 2:
                 self.mostrarGrupo()
                 self.modificarGrupo()

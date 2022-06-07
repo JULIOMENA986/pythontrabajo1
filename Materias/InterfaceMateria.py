@@ -1,18 +1,23 @@
+
 from Materia import Materia
+import Jsonconexion
 import re
-import os 
+import os
 class InterfaceMateria():
     def __init__(self):
         self.lista = Materia()
-    
+        self.lista.toObjects()
+
     def cls(self):
-        os.system('cls' if os.name=='nt' else 'clear')
+        os.system('cls' if os.name == 'nt' else 'clear')
+
     def nuevaMateria(self):
         p = Materia()
         p.nombre = input("Nombre  materia: ")
         p.calificacion = float(input("Calificacion: "))
         return p
-    def mostrarMateria(self, lista= None):
+
+    def mostrarMateria(self, lista=None):
         self.cls()
         print("\n\n" + "-" * 10 + "Datos de materia" + "-" * 10)
         if (lista == None):
@@ -20,12 +25,12 @@ class InterfaceMateria():
         else:
             mylista = lista
         print("ID".ljust(5) + "\t\t" + 'Nombre'.ljust(20) + "\t\t" + "Calificacion".ljust(20))
-        i =0
+        i = 0
         for p in mylista:
             print(str(i).ljust(5) + "\t\t" + str(p.nombre).ljust(20) + "\t\t" + str(p.calificacion))
             i += 1
         input("oprime enter para continuar .....")
-    
+
     def buscarMateria(self, code):
         mylista = [p for p in self.lista if p.nombre == code]
         self.mostrarMateria(mylista)
@@ -38,11 +43,11 @@ class InterfaceMateria():
         id = int(id)
         p = self.lista.getLista()[id]
         cadena = input("Ingrese el nuevo nombre de la materia: ")
-        if(len(cadena)>0):
+        if (len(cadena) > 0):
             p.nombre = cadena
         else:
             print("No se modifico el nombre")
-        if(len(cadena)>0):
+        if (len(cadena) > 0):
             p.calificacion = float(input("Ingrese la nueva calificacion: "))
         else:
             print("No se modifico la calificacion")
@@ -51,9 +56,9 @@ class InterfaceMateria():
     def eliminarMateria(self):
         id = input("Ingrese el id de la materia a eliminar: ")
         id = int(id)
-        print (self.lista.getMateria(id))
+        print(self.lista.getMateria(id))
         self.lista.delete(self.lista.getMateria(id))
-    
+
     def menuMaterias(self):
         a = 10
         while a != 0:
@@ -69,6 +74,7 @@ class InterfaceMateria():
             if a == 1:
                 p = self.nuevaMateria()
                 self.lista.add(p)
+                self.lista.toJson(self.lista)
             elif a == 2:
                 self.mostrarMateria()
                 self.modificarMateria()
@@ -86,7 +92,6 @@ class InterfaceMateria():
                 print("Opcion no valida")
                 input("oprime enter para continuar .....")
 
-
-if (__name__ == "__main__"):
-    p = InterfaceMateria()
-    p.menuMaterias()
+if __name__=='__main__':
+	ip=InterfaceMateria()
+	ip.menuMaterias()

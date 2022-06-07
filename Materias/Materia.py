@@ -1,11 +1,15 @@
+from Jsonconexion import JsonFile
 import copy
 
-class Materia():
+class Materia(JsonFile):
     def __init__(self, nombre="", calificacion=0.0, lista=list()):
         self.nombre = nombre
         self.calificacion = calificacion
         self.lista = lista
         self.__idx__ = 0
+        super(Materia, self).__init__('../JSONS/Materia.json')
+        self.nombrefile = "../JSONS/Materia.json"
+        self.filename = self.nombrefile
 
     def add(self, Materia):
         self.lista.append(Materia)
@@ -15,7 +19,7 @@ class Materia():
 
     def getMateria(self, index):
         return self.lista[index]
-    
+
     def update(self, index,Materia):
         self.lista[index] = Materia
 
@@ -30,7 +34,7 @@ class Materia():
             "nombre": self.nombre,
             "calificacion": self.calificacion
         }
-    
+
     def toObjects(self):
         lista = list()
         for x in self.lista:
@@ -40,7 +44,7 @@ class Materia():
     def __iter__(self):
         self.__idx__ = 0
         return self
-    
+
     def __next__(self):
         if self.__idx__ < len(self.lista):
             x = self.lista[self.__idx__]
@@ -48,15 +52,15 @@ class Materia():
             return x
         else:
             raise StopIteration
-   
+
     def __str__(self):
-        return self.nombre.ljust(20) + ' \t\t' + self.calificacion.ljust(20) 
+        return self.nombre.ljust(20) + ' \t\t' + self.calificacion.ljust(20)
 
     def toObjects(self):
         lista = list()
         data = self.getDataJson()
         for x in data:
-            lista.append(Materia(_id=x['_id'], nombre=x['nombre'], rfc=x['rfc'], calificacion=x["calificacion"]))
+         lista.append(Materia(nombre=x['nombre'], calificacion=x["calificacion"]))
         self.lista = lista
 
     def getDictory(self):
@@ -100,4 +104,3 @@ class Materia():
     #print(cal.toObjects())
     #print(cal.getMateria(1))
 
-    

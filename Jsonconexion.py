@@ -12,6 +12,6 @@ class JsonFile:
             file = open(self.filename, "r")
             data = json.loads(file.read())
         return data
-    def toJson(self, listasmaterias): 
+    def toJson(self, lista):
          file = open(self.filename, "w")
-         file = json.dump([ob.__dict__ for ob in listasmaterias], file, indent=4)    
+         file = json.dump([ob.__dict__ for ob in lista], file, indent=4)

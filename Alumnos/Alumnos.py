@@ -1,20 +1,24 @@
 from Materias.Materia import Materia
+from Jsonconexion import JsonFile
+import copy
 
-class Alumnos(Materia):
+class Alumnos(JsonFile):
     def __init__(self, idalumnos=0, nombre="", telefono ="", direccion="",lista=list()):
         self.idalumnos = idalumnos
         self.nombre = nombre
         self.telefono = telefono
         self.direccion = direccion
         self.lista = lista
-
+        super(Alumnos, self).__init__('../JSONS/Alumnos.json')
+        self.nombrefile = "../JSONS/Alumnos.json"
+        self.filename = self.nombrefile
+        
+    def add(self, Alumnos):
+        self.lista.append(Alumnos)
 
     def modificar(self, index, Alumnos):
         self.lista[index] = Alumnos
         
-    def insertas(self, Alumnos):
-        self.lista.append(Alumnos)
-
     def eliminar(self, Alumnos):
         self.lista.remove(Alumnos)
 
@@ -32,16 +36,18 @@ class Alumnos(Materia):
 
     def getDirectory(self):
         return{
+            "idalumno": self.idalumnos,
             "nombre": self.nombre,
             "telefono": self.telefono,
             "direccion": self.direccion
         }
-    
+    '''
     def toObjects(self):
         lista = list()
         for x in self.lista:
             lista.append(x.getDirectory())
         return lista
+    '''
 
     def __iter__(self):
         self.__idx__ = 0
@@ -56,19 +62,22 @@ class Alumnos(Materia):
             raise StopIteration
    
     def __str__(self):
-        return self.nombre.ljust(20) + ' \t\t' + self.rfc.ljust(20) + ' \t\t' + self.direccion
+        return self.idalumnos.ljust(20) + self.nombre.ljust(20) + ' \t\t' + self.telefono.ljust(20) + ' \t\t' + self.direccion
 
     def toObjects(self):
         lista = list()
-        data = self.getDataJson()
-        for x in data:
-            lista.append(Alumnos(_id=x['_id'], nombre=x['nombre'], rfc=x['rfc'], direccion=x["direccion"]))
-        self.lista = lista
+        return lista
+        data= self.getDataJson()
+        if(data):
+            for x in data:
+                lista.append(Alumnos(_idalumnos=x['idalumnos'], nombre=x['nombre'], telefono=x['telefono'], direccion=x["direccion"]))
+        self.lista=lista
 
     def getDictory(self):
         return {
+            "idalumnos":self.idalumnos,
             "nombre": self.nombre,
-            "rfc": self.rfc,
+            "telefono": self.telefono,
             "direccion": self.direccion
         }
 
@@ -90,3 +99,4 @@ class Alumnos(Materia):
             return x
         else:
             raise StopIteration
+
